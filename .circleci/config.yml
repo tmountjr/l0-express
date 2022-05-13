@@ -1,0 +1,48 @@
+version: 2.1
+
+parameters:
+  GHA_Actor:
+    type: string
+    default: ""
+  GHA_Action:
+    type: string
+    default: ""
+  GHA_Event:
+    type: string
+    default: ""
+  GHA_Meta:
+    type: string
+    default: ""
+
+jobs:
+  show_env_vars:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: echo CIRCLE_PULL_REQUEST
+          command: echo $CIRCLE_PULL_REQUEST
+      - run:
+          name: echo CIRCLE_PULL_REQUESTS
+          command: echo $CIRCLE_PULL_REQUESTS
+      - run:
+          name: echo CIRCLE_TAG
+          command: echo $CIRCLE_TAG
+      - run:
+          name: echo GH_META
+          command: echo $GH_META
+      - run:
+          name: echo CIRCLE_BRANCH
+          command: echo $CIRCLE_BRANCH
+
+workflows:
+  version: 2.1
+  build_and_deploy:
+    jobs:
+      - show_env_vars:
+          filters:
+            tags:
+              only: /^v\d+.*/
+            branches:
+              only: /.*/
