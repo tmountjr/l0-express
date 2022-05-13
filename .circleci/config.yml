@@ -35,6 +35,12 @@ jobs:
       - run:
           name: echo CIRCLE_BRANCH
           command: echo $CIRCLE_BRANCH
+      - run:
+          name: echo CIRCLE_SHA1
+          command: echo $CIRCLE_SHA1
+      - run:
+          name: run git log
+          command: git log
 
 workflows:
   version: 2.1
