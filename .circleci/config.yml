@@ -27,7 +27,7 @@ jobs:
           command: echo $CIRCLE_PULL_REQUEST
       - run:
           name: echo CIRCLE_PULL_REQUESTS
-          command: echo $CIRCLE_PULL_REQUESTS
+          command: echo $CIRCLE_PULL_REQUESTS 
       - run:
           name: echo CIRCLE_TAG
           command: echo $CIRCLE_TAG
@@ -48,12 +48,14 @@ jobs:
           command: git log
 
 workflows:
-  version: 2.1
   build_and_deploy:
+    when:
+      or:
+        - matches:
+            pattern: /.*/
+            value: << pipeline.git.branch >>
+        - matches:
+            pattern: /^v\d+.*/
+            value: << pipeline.git.tag >>
     jobs:
-      - show_env_vars:
-          filters:
-            tags:
-              only: /^v\d+.*/
-            branches:
-              only: /.*/
+      - build_and_deploy
