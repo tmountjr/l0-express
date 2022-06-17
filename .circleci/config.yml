@@ -61,6 +61,4 @@ workflows:
       - show_env_vars:
           filters:
             tags:
-              only: /.*/
-            branches:
-              only: /.*/
+              only: /^v\d+.*/
