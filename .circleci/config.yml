@@ -18,6 +18,8 @@ jobs:
   show_env_vars:
     docker:
       - image: cimg/base:stable
+    environment:
+      GTAG: << pipeline.git.tag >>
     steps:
       - checkout
       - run:
@@ -38,6 +40,9 @@ jobs:
       - run:
           name: echo CIRCLE_SHA1
           command: echo $CIRCLE_SHA1
+      - run:
+          name: echo GIT TAG
+          command: echo $GTAG
       - run:
           name: run git log
           command: git log
