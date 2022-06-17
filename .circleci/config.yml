@@ -58,4 +58,9 @@ workflows:
             pattern: /^v\d+.*/
             value: << pipeline.git.tag >>
     jobs:
-      - show_env_vars
+      - show_env_vars:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              only: /.*/
