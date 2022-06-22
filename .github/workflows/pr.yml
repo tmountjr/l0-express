@@ -11,7 +11,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: debug
-        run: echo "${{ secrets.CCI_TOKEN }}"
+        run: echo ${GITHUB_ACTION}
       # - name: trigger build
       #   uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0.5
       #   env:
