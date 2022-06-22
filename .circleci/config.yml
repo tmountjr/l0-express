@@ -20,8 +20,8 @@ jobs:
       - image: cimg/base:stable
     environment:
       GTAG: << pipeline.git.tag >>
-      GHA_META: << pipeline.git.GHA_Meta >>
-      GHA_ACTION: << pipeline.git.GHA_Action >>
+      GHA_META: << pipeline.parameters.GHA_Meta >>
+      GHA_ACTION: << pipeline.parameters.GHA_Action >>
     steps:
       - checkout
       - run:
