@@ -20,8 +20,7 @@ jobs:
       - image: cimg/base:stable
     environment:
       GTAG: << pipeline.git.tag >>
-      GHA_META: << pipeline.parameters.GHA_Meta >>
-      GHA_ACTION: << pipeline.parameters.GHA_Action >>
+      GHA_EVENT: << pipeline.parameters.GHA_Event >>
     steps:
       - checkout
       - run:
@@ -34,8 +33,8 @@ jobs:
           name: echo CIRCLE_TAG
           command: echo $CIRCLE_TAG
       - run:
-          name: echo GHA_ACTION
-          command: echo $GHA_ACTION
+          name: echo GHA_EVENT
+          command: echo $GHA_Event
       - run:
           name: echo CIRCLE_BRANCH
           command: echo $CIRCLE_BRANCH
