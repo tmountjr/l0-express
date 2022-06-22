@@ -1,7 +1,8 @@
 name: New PR
 on:
   pull_request:
-    types: [opened]
+  release:
+    types: [released]
 
 jobs:
   trigger_circle:
@@ -9,6 +10,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+      # - name: debug
+      #   run: echo ${GITHUB_EVENT_NAME}
       - name: trigger build
         uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0.5
         env:

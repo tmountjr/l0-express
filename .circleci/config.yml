@@ -20,6 +20,7 @@ jobs:
       - image: cimg/base:stable
     environment:
       GTAG: << pipeline.git.tag >>
+      GHA_EVENT: << pipeline.parameters.GHA_Event >>
     steps:
       - checkout
       - run:
@@ -32,8 +33,8 @@ jobs:
           name: echo CIRCLE_TAG
           command: echo $CIRCLE_TAG
       - run:
-          name: echo GH_META
-          command: echo $GH_META
+          name: echo GHA_EVENT
+          command: echo $GHA_EVENT
       - run:
           name: echo CIRCLE_BRANCH
           command: echo $CIRCLE_BRANCH
@@ -43,9 +44,6 @@ jobs:
       - run:
           name: echo GIT TAG
           command: echo $GTAG
-      - run:
-          name: run git log
-          command: git log
 
 workflows:
   show_env_vars:
