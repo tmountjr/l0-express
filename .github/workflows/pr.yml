@@ -11,7 +11,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: debug
-        run: echo ${GITHUB_ACTION}
+        run: echo ${GITHUB_EVENT_NAMEß}
       # - name: trigger build
       #   uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0.5
       #   env:
